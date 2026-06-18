@@ -78,6 +78,7 @@ int main()
     generateCode(repeatt);
     getchar();
 
+    printf("some option for you\n 1. code redeem\n 2. seed translate\n");
     printf("choose option: ");
     scanf("%d", &option);
 
