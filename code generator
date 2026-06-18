@@ -56,10 +56,11 @@ void translateNumToChar(int number)
         translateNum[i] = number % 10;
         number = number / 10;
     }
+    printf("[Result] ");
     for (int i = 0; i < 5; i++)
     {
         //printf("%d", translateNum[i]);
-        printf("[Result] %c", letters[translateNum[i]]);
+        printf("%c", letters[translateNum[i]]);
     }
     
 }
@@ -71,7 +72,8 @@ int main()
     int option;
     int seedtrs;
 
-    printf("hello\n");
+    printf("Welcome to code generator :)\n");
+    printf("Write how many code you want to generate: ");
     scanf("%d", &repeatt); 
     generateCode(repeatt);
     getchar();
@@ -83,6 +85,7 @@ int main()
     {
         getchar();
 
+        printf("code redeem\n");
         printf("Write the code: ");
         scanf("%[^\n]", usrinput);
         redeem(usrinput);
@@ -97,6 +100,7 @@ int main()
             scanf(" %d", &seedtrs);
             translateNumToChar(seedtrs);
         }*/
+       printf("translate seed\n");
        printf("write your seed code: ");
        scanf("%d", &seedtrs);
        translateNumToChar(seedtrs);
