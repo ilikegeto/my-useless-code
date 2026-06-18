@@ -1,0 +1,109 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+#include <string.h>
+
+char Code[15][14];
+int redeemCode = 0;
+char letters[] = {'A','B','C','D','E'};
+
+void generateCode(int rpt) 
+{
+    srand(time(NULL));
+    redeemCode = rpt;
+    for (int i = 0; i < rpt; i++) {
+        char finalcode[14] = "";
+        for (int i = 0; i < 5; i++)
+        {
+            int charR = rand() % 5;
+            sprintf(finalcode + strlen(finalcode), "%c", letters[charR]);
+        };
+        sprintf(finalcode + strlen(finalcode), " - ");
+        for (int i = 0; i < 5; i++)
+        {
+            int seedR = rand() % 5;
+            sprintf(finalcode + strlen(finalcode), "%d", seedR);
+        };
+        strcpy(Code[i], finalcode);
+        printf("%d %s\n",i + 1, Code[i]);
+    };
+}
+
+void redeem(char inputcode[])
+{
+    int correct = 0;
+    for (int i = 0; i < redeemCode; i++)
+    {
+        if (strcmp(Code[i], inputcode) == 0)
+        {
+            correct = 1;
+            break;
+        }
+    }
+    if (correct == 1)
+    {
+        printf("\n[Result]-code valid-");
+    } else {
+        printf("\n[Result]-code invalid-");
+    }  
+}
+
+void translateNumToChar(int number)
+{
+    int translateNum[5];
+    for (int i = 4; i >= 0; i--)
+    {
+        translateNum[i] = number % 10;
+        number = number / 10;
+    }
+    for (int i = 0; i < 5; i++)
+    {
+        //printf("%d", translateNum[i]);
+        printf("[Result] %c", letters[translateNum[i]]);
+    }
+    
+}
+
+int main()
+{
+    int repeatt;
+    char usrinput[14];
+    int option;
+    int seedtrs;
+
+    printf("hello\n");
+    scanf("%d", &repeatt); 
+    generateCode(repeatt);
+    getchar();
+
+    printf("choose option: ");
+    scanf("%d", &option);
+
+    if (option == 1)
+    {
+        getchar();
+
+        printf("Write the code: ");
+        scanf("%[^\n]", usrinput);
+        redeem(usrinput);
+    }
+    else if (option == 2)
+    {
+        getchar();
+
+        /*for (int i = 0; i < 5; i++)
+        {
+            printf("write one number in seed number: ");
+            scanf(" %d", &seedtrs);
+            translateNumToChar(seedtrs);
+        }*/
+       printf("write your seed code: ");
+       scanf("%d", &seedtrs);
+       translateNumToChar(seedtrs);
+    }
+    else
+    {
+        printf("bread");
+    }
+    return 0;
+}
